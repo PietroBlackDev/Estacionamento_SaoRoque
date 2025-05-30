@@ -1,3 +1,4 @@
+import 'package:estacionamentoSaoRoque/componentes/botao_voltar.dart';
 import 'package:estacionamentoSaoRoque/componentes/header.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[Header(texto: 'Placas e Cartões')],
+          children: <Widget>[
+            Header(texto: 'Placas e Cartões'),
+            SizedBox(height: 10),
+            BotaoVoltar(),
+          ],
         ),
       ),
     );
