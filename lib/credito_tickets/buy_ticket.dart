@@ -347,7 +347,7 @@ class _TelaPrincipalState extends State<BuyTicket> {
                 SizedBox(
                   height: 58,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: _mostrarModalCadastrarCartao,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple,
                       foregroundColor: Colors.white,
