@@ -148,7 +148,7 @@ class _TelaPrincipalState extends State<BuyTicket> {
                 SizedBox(
                   height: 58,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: _mostrarModalAdicionarPlaca,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple,
                       foregroundColor: Colors.white,
@@ -254,7 +254,7 @@ class _TelaPrincipalState extends State<BuyTicket> {
                 SizedBox(
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: _mostrarModalCadastrarCartao,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple,
                       foregroundColor: Colors.white,
@@ -450,6 +450,131 @@ class _TelaPrincipalState extends State<BuyTicket> {
       ),
     );
   }
+
+  void _mostrarModalAdicionarPlaca() {
+  TextEditingController placaController = TextEditingController();
+
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      title: Text('Adicionar Nova Placa'),
+      content: TextField(
+        controller: placaController,
+        decoration: InputDecoration(
+          hintText: 'Digite a placa (ex: ABC-1234)',
+          border: OutlineInputBorder(),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text('Cancelar'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            String novaPlaca = placaController.text.trim();
+            if (novaPlaca.isNotEmpty) {
+              setState(() {
+                placasCadastradas.add(novaPlaca);
+                placaSelecionada = novaPlaca;
+              });
+            }
+            Navigator.of(context).pop();
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.purple,
+            foregroundColor: Colors.white,
+          ),
+          child: Text('Salvar'),
+        ),
+      ],
+    ),
+  );
+}
+
+void _mostrarModalCadastrarCartao() {
+  TextEditingController nomeTitularController = TextEditingController();
+  TextEditingController numeroCartaoController = TextEditingController();
+  TextEditingController validadeController = TextEditingController();
+  TextEditingController cvvController = TextEditingController();
+
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      title: Text('Cadastrar Cartão'),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: nomeTitularController,
+              decoration: InputDecoration(
+                labelText: 'Nome do Titular',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 12),
+            TextField(
+              controller: numeroCartaoController,
+              decoration: InputDecoration(
+                labelText: 'Número do Cartão',
+                border: OutlineInputBorder(),
+              ),
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: validadeController,
+                    decoration: InputDecoration(
+                      labelText: 'Validade (MM/AA)',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.datetime,
+                  ),
+                ),
+                SizedBox(width: 12),
+                Expanded(
+                  child: TextField(
+                    controller: cvvController,
+                    decoration: InputDecoration(
+                      labelText: 'CVV',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text('Cancelar'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            // Aqui você pode salvar os dados se quiser.
+            Navigator.of(context).pop();
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.purple,
+            foregroundColor: Colors.white,
+          ),
+          child: Text('Salvar'),
+        ),
+      ],
+    ),
+  );
+}
+
+
 
 
 }
