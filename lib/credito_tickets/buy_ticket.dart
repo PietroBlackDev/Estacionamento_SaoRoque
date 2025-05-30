@@ -12,10 +12,8 @@ class BuyTicket extends StatefulWidget {
 class _TelaPrincipalState extends State<BuyTicket> {
   String? acaoSelecionada;
 
-  // Dados do menu dropdown principal
   final List<String> acoes = ['Ativar Ticket', 'Comprar Crédito'];
 
-  // --- Dados para Ativar Ticket ---
   List<String> placasCadastradas = ['ABC-1234', 'XYZ-5678', 'DEF-9876'];
   String? placaSelecionada;
 
@@ -29,7 +27,6 @@ class _TelaPrincipalState extends State<BuyTicket> {
   ];
   String? formaPagamentoSelecionada;
 
-  // --- Dados para Comprar Crédito ---
   TextEditingController valorCreditoController = TextEditingController();
 
   @override
@@ -58,8 +55,8 @@ class _TelaPrincipalState extends State<BuyTicket> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: Colors.black, // cor da borda
-                    width: 2, // espessura da borda
+                    color: Colors.black,
+                    width: 2,
                   ),
                 ),
                 alignment: Alignment.center,
@@ -73,10 +70,7 @@ class _TelaPrincipalState extends State<BuyTicket> {
                 ),
               ),
             ),
-
             SizedBox(height: 16),
-
-            // Dropdown para selecionar ação
             Text(
               'Selecione opção',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -85,36 +79,28 @@ class _TelaPrincipalState extends State<BuyTicket> {
             DropdownButtonFormField<String>(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 16,
-                ),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 12, vertical: 16),
               ),
               value: acaoSelecionada,
               hint: Text('Selecione uma ação'),
               onChanged: (String? novaAcao) {
                 setState(() {
                   acaoSelecionada = novaAcao;
-
-                  // Resetar campos quando trocar a aba
                   placaSelecionada = null;
                   tempoSelecionado = null;
                   formaPagamentoSelecionada = null;
                   valorCreditoController.clear();
                 });
               },
-              items:
-                  acoes.map((acao) {
-                    return DropdownMenuItem<String>(
-                      value: acao,
-                      child: Text(acao),
-                    );
-                  }).toList(),
+              items: acoes.map((acao) {
+                return DropdownMenuItem<String>(
+                  value: acao,
+                  child: Text(acao),
+                );
+              }).toList(),
             ),
-
             SizedBox(height: 24),
-
-            // Conteúdo condicional baseado na opção selecionada
             Expanded(child: _buildConteudo()),
           ],
         ),
@@ -128,7 +114,6 @@ class _TelaPrincipalState extends State<BuyTicket> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Escolha uma placa
             Text(
               'Escolha uma placa',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -142,9 +127,7 @@ class _TelaPrincipalState extends State<BuyTicket> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       contentPadding: EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 16,
-                      ),
+                          horizontal: 12, vertical: 16),
                     ),
                     value: placaSelecionada,
                     hint: Text('Selecione uma placa'),
@@ -153,13 +136,12 @@ class _TelaPrincipalState extends State<BuyTicket> {
                         placaSelecionada = novaPlaca;
                       });
                     },
-                    items:
-                        placasCadastradas.map((placa) {
-                          return DropdownMenuItem<String>(
-                            value: placa,
-                            child: Text(placa),
-                          );
-                        }).toList(),
+                    items: placasCadastradas.map((placa) {
+                      return DropdownMenuItem<String>(
+                        value: placa,
+                        child: Text(placa),
+                      );
+                    }).toList(),
                   ),
                 ),
                 SizedBox(width: 8),
@@ -176,10 +158,7 @@ class _TelaPrincipalState extends State<BuyTicket> {
                 ),
               ],
             ),
-
             SizedBox(height: 24),
-
-            // Horário de Permanência + Validade lado a lado
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -190,34 +169,28 @@ class _TelaPrincipalState extends State<BuyTicket> {
                       Text(
                         'Horário de Permanência',
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                       SizedBox(height: 8),
                       DropdownButtonFormField<String>(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           contentPadding: EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 16,
-                          ),
+                              horizontal: 12, vertical: 16),
                         ),
                         value: tempoSelecionado,
                         hint: Text('Selecione o tempo'),
                         onChanged: (String? novoTempo) {
                           setState(() {
                             tempoSelecionado = novoTempo;
-                            // Aqui poderia atualizar a validade dinamicamente
                           });
                         },
-                        items:
-                            ['1 hora', '2 horas', '3 horas'].map((tempo) {
-                              return DropdownMenuItem<String>(
-                                value: tempo,
-                                child: Text(tempo),
-                              );
-                            }).toList(),
+                        items: ['1 hora', '2 horas', '3 horas'].map((tempo) {
+                          return DropdownMenuItem<String>(
+                            value: tempo,
+                            child: Text(tempo),
+                          );
+                        }).toList(),
                       ),
                     ],
                   ),
@@ -229,17 +202,13 @@ class _TelaPrincipalState extends State<BuyTicket> {
                     Text(
                       'Validade',
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                          fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                     SizedBox(height: 8),
                     Container(
                       width: 100,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 16,
-                      ),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(4),
@@ -250,10 +219,7 @@ class _TelaPrincipalState extends State<BuyTicket> {
                 ),
               ],
             ),
-
             SizedBox(height: 24),
-
-            // Formas de Pagamento + botão ao lado
             Text(
               'Formas de Pagamento',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -266,10 +232,8 @@ class _TelaPrincipalState extends State<BuyTicket> {
                   child: DropdownButtonFormField<String>(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 0,
-                      ),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 0),
                     ),
                     value: formaPagamentoSelecionada,
                     hint: Text('Metodo de Pagamento'),
@@ -278,13 +242,12 @@ class _TelaPrincipalState extends State<BuyTicket> {
                         formaPagamentoSelecionada = value;
                       });
                     },
-                    items:
-                        formasPagamento.map((fp) {
-                          return DropdownMenuItem<String>(
-                            value: fp,
-                            child: Text(fp),
-                          );
-                        }).toList(),
+                    items: formasPagamento.map((fp) {
+                      return DropdownMenuItem<String>(
+                        value: fp,
+                        child: Text(fp),
+                      );
+                    }).toList(),
                   ),
                 ),
                 SizedBox(width: 8),
@@ -295,24 +258,20 @@ class _TelaPrincipalState extends State<BuyTicket> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple,
                       foregroundColor: Colors.white,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16,
-                      ), // controla a largura via padding
+                      padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
                     child: Text('Cadastrar Cartão'),
                   ),
                 ),
               ],
             ),
-
             SizedBox(height: 24),
-
             Center(
               child: SizedBox(
                 width: double.infinity,
                 height: 60,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: _mostrarModalAtivacao,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
@@ -329,7 +288,6 @@ class _TelaPrincipalState extends State<BuyTicket> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Campo para informar valor do crédito com máscara R$000,00
             Text(
               'Informe o valor do crédito',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -343,25 +301,18 @@ class _TelaPrincipalState extends State<BuyTicket> {
                 MoneyInputFormatter(
                   leadingSymbol: 'R\$',
                   useSymbolPadding: true,
-                  thousandSeparator:
-                      ThousandSeparator
-                          .Period, // usa ponto como separador de milhar
+                  thousandSeparator: ThousandSeparator.Period,
                   mantissaLength: 2,
                 ),
               ],
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'R\$0,00',
-                contentPadding: EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 16,
-                ),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 12, vertical: 16),
               ),
             ),
-
             SizedBox(height: 24),
-
-            // Formas de Pagamento + botão ao lado (igual na outra aba)
             Text(
               'Formas de Pagamento',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -374,10 +325,8 @@ class _TelaPrincipalState extends State<BuyTicket> {
                   child: DropdownButtonFormField<String>(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 20,
-                      ),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 20),
                     ),
                     value: formaPagamentoSelecionada,
                     hint: Text('Selecione o pagamento'),
@@ -386,13 +335,12 @@ class _TelaPrincipalState extends State<BuyTicket> {
                         formaPagamentoSelecionada = value;
                       });
                     },
-                    items:
-                        formasPagamento.map((fp) {
-                          return DropdownMenuItem<String>(
-                            value: fp,
-                            child: Text(fp),
-                          );
-                        }).toList(),
+                    items: formasPagamento.map((fp) {
+                      return DropdownMenuItem<String>(
+                        value: fp,
+                        child: Text(fp),
+                      );
+                    }).toList(),
                   ),
                 ),
                 SizedBox(width: 8),
@@ -403,24 +351,20 @@ class _TelaPrincipalState extends State<BuyTicket> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple,
                       foregroundColor: Colors.white,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16,
-                      ), // controla a largura via padding
+                      padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
                     child: Text('Cadastrar Cartão'),
                   ),
                 ),
               ],
             ),
-
             SizedBox(height: 24),
-
             Center(
               child: SizedBox(
                 width: double.infinity,
                 height: 60,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: _mostrarModalCredito,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
@@ -433,7 +377,6 @@ class _TelaPrincipalState extends State<BuyTicket> {
         ),
       );
     } else {
-      // Se nada selecionado, pode mostrar algo neutro
       return Center(
         child: Text(
           'Por favor, selecione uma opção acima.',
@@ -442,4 +385,71 @@ class _TelaPrincipalState extends State<BuyTicket> {
       );
     }
   }
+
+  void _mostrarModalAtivacao() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        contentPadding: EdgeInsets.all(24),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.check_circle, color: Colors.green, size: 80),
+            SizedBox(height: 16),
+            Text('Ticket ativado com sucesso!',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+            SizedBox(height: 8),
+            Text('Obrigado por usar nosso app.', textAlign: TextAlign.center),
+            SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pop(),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.purple,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _mostrarModalCredito() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        contentPadding: EdgeInsets.all(24),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.attach_money, color: Colors.green, size: 80),
+            SizedBox(height: 16),
+            Text('Crédito adicionado!',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+            SizedBox(height: 8),
+            Text('Seu saldo foi atualizado com sucesso.',
+                textAlign: TextAlign.center),
+            SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pop(),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.purple,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+
 }
