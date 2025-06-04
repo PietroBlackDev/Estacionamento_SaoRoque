@@ -22,21 +22,39 @@ class Header extends StatelessWidget {
               color: Colors.white,
               child: Column(
                 children: [
-                  const DrawerHeader(
-                    decoration: BoxDecoration(color: Colors.blue),
-                    child: Text(
-                      'Cabeçalho do Menu',
-                      style: TextStyle(color: Colors.white, fontSize: 24),
+                  DrawerHeader(
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      width: 232,
+                      height: 232,
                     ),
                   ),
                   ListTile(
-                    leading: const Icon(Icons.home),
-                    title: const Text('Início'),
+                    leading: const Icon(Icons.arrow_back_rounded),
+                    title: const Text('Voltar'),
                     onTap: () => Navigator.of(context).pop(),
                   ),
                   ListTile(
-                    leading: const Icon(Icons.settings),
-                    title: const Text('Configurações'),
+                    leading: const Icon(Icons.house),
+                    title: const Text('Menu'),
+                    onTap: () => Navigator.of(context).pop(),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.subdirectory_arrow_left),
+                    title: const Text('Sair da Conta'),
+                    onTap: () => Navigator.of(context).pop(),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.contact_support),
+                    title: const Text('Dúvidas e informações'),
+                    onTap: () => Navigator.of(context).pop(),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.privacy_tip),
+                    title: const Text('Política de privacidade'),
                     onTap: () => Navigator.of(context).pop(),
                   ),
                 ],

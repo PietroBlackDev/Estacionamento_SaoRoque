@@ -1,5 +1,7 @@
 import 'package:estacionamentoSaoRoque/componentes/botao_voltar.dart';
 import 'package:estacionamentoSaoRoque/componentes/header.dart';
+import 'package:estacionamentoSaoRoque/pages/Cartoes.dart';
+import 'package:estacionamentoSaoRoque/pages/Placas.dart';
 import 'package:flutter/material.dart';
 
 class Placasecartoesum extends StatefulWidget {
@@ -57,8 +59,8 @@ class _PlacasecartoesumState extends State<Placasecartoesum> {
                           ),
                           SizedBox(height: 1.5),
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.6,
-                            height: MediaQuery.of(context).size.height * 0.2,
+                            width: MediaQuery.of(context).size.width * 0.55,
+                            height: MediaQuery.of(context).size.height * 0.190,
                             decoration: BoxDecoration(
                               color: const Color.fromARGB(255, 0, 59, 224),
                               borderRadius: BorderRadius.circular(20),
@@ -71,7 +73,7 @@ class _PlacasecartoesumState extends State<Placasecartoesum> {
                                 Icon(
                                   Icons.car_crash_outlined,
                                   color: Color.fromRGBO(244, 244, 244, 1),
-                                  size: 120,
+                                  size: 110,
                                 ),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -81,10 +83,10 @@ class _PlacasecartoesumState extends State<Placasecartoesum> {
                                     Container(
                                       width:
                                           MediaQuery.of(context).size.width *
-                                          0.15,
+                                          0.13,
                                       height:
                                           MediaQuery.of(context).size.height *
-                                          0.02,
+                                          0.016,
                                       decoration: BoxDecoration(
                                         color: const Color.fromRGBO(
                                           244,
@@ -100,10 +102,10 @@ class _PlacasecartoesumState extends State<Placasecartoesum> {
                                     Container(
                                       width:
                                           MediaQuery.of(context).size.width *
-                                          0.15,
+                                          0.13,
                                       height:
                                           MediaQuery.of(context).size.height *
-                                          0.02,
+                                          0.016,
                                       decoration: BoxDecoration(
                                         color: const Color.fromRGBO(
                                           244,
@@ -123,8 +125,8 @@ class _PlacasecartoesumState extends State<Placasecartoesum> {
                           ),
                           SizedBox(height: 10),
                           SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.6,
-                            height: MediaQuery.of(context).size.height * 0.04,
+                            width: MediaQuery.of(context).size.width * 0.55,
+                            height: MediaQuery.of(context).size.height * 0.05,
                             child: ElevatedButton(
                               style: ButtonStyle(
                                 padding: WidgetStateProperty.all<EdgeInsets>(
@@ -140,7 +142,12 @@ class _PlacasecartoesumState extends State<Placasecartoesum> {
                                 ),
                               ),
                               onPressed: () {
-                                Navigator.pop(context);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Placas(title: ''),
+                                  ),
+                                );
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -195,9 +202,9 @@ class _PlacasecartoesumState extends State<Placasecartoesum> {
                               ),
                               SizedBox(height: 1.5),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.6,
+                                width: MediaQuery.of(context).size.width * 0.55,
                                 height:
-                                    MediaQuery.of(context).size.height * 0.2,
+                                    MediaQuery.of(context).size.height * 0.190,
                                 decoration: BoxDecoration(
                                   color: const Color.fromARGB(255, 0, 59, 224),
                                   borderRadius: BorderRadius.circular(20),
@@ -224,12 +231,12 @@ class _PlacasecartoesumState extends State<Placasecartoesum> {
                                               MediaQuery.of(
                                                 context,
                                               ).size.width *
-                                              0.15,
+                                              0.13,
                                           height:
                                               MediaQuery.of(
                                                 context,
                                               ).size.height *
-                                              0.02,
+                                              0.016,
                                           decoration: BoxDecoration(
                                             color: const Color.fromRGBO(
                                               244,
@@ -247,12 +254,12 @@ class _PlacasecartoesumState extends State<Placasecartoesum> {
                                               MediaQuery.of(
                                                 context,
                                               ).size.width *
-                                              0.15,
+                                              0.13,
                                           height:
                                               MediaQuery.of(
                                                 context,
                                               ).size.height *
-                                              0.02,
+                                              0.016,
                                           decoration: BoxDecoration(
                                             color: const Color.fromRGBO(
                                               244,
@@ -272,9 +279,9 @@ class _PlacasecartoesumState extends State<Placasecartoesum> {
                               ),
                               SizedBox(height: 10),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.6,
+                                width: MediaQuery.of(context).size.width * 0.55,
                                 height:
-                                    MediaQuery.of(context).size.height * 0.04,
+                                    MediaQuery.of(context).size.height * 0.05,
                                 child: ElevatedButton(
                                   style: ButtonStyle(
                                     padding:
@@ -293,7 +300,12 @@ class _PlacasecartoesumState extends State<Placasecartoesum> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    Navigator.pop(context);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Cartoes(title: ''),
+                                  ),
+                                );
                                   },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
