@@ -1,8 +1,8 @@
 import 'package:estacionamentoSaoRoque/componentes/botao_voltar.dart';
 import 'package:estacionamentoSaoRoque/componentes/header.dart';
-import 'package:estacionamentoSaoRoque/pages/PerguntasFrequentes.dart';
 import 'package:estacionamentoSaoRoque/pages/PlacasECartoesUm.dart';
 import 'package:estacionamentoSaoRoque/pages/PoliticasPrivacidade.dart';
+import 'package:estacionamentoSaoRoque/pages/perguntas_frequente.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
