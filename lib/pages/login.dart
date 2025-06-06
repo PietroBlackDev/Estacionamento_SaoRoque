@@ -1,6 +1,9 @@
-import 'package:estacionamentoSaoRoque/componentes/header.dart';
-import 'package:estacionamentoSaoRoque/pages/cadastro.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/home.dart';
+
+import '../componentes/header.dart';
+import 'cadastro.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key, required this.title});
@@ -79,7 +82,9 @@ class _LoginState extends State<Login> {
                         ),
                         backgroundColor: Color.fromRGBO(8, 55, 101, 1),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder:(BuildContext context) => HomePage()));
+                      },
                       child: Text(
                         'Entrar',
                         style: TextStyle(color: Colors.white),
