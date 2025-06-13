@@ -81,7 +81,6 @@ class _TelaPrincipalState extends State<BuyTicket> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
             TextField(
-            
               decoration: InputDecoration(
                 labelText: 'Nome do Titular',
                 border: OutlineInputBorder(),
@@ -89,7 +88,6 @@ class _TelaPrincipalState extends State<BuyTicket> {
             ),
             SizedBox(height: 12),
             TextField(
-    
               decoration: InputDecoration(
                 labelText: 'Número do Cartão',
                 border: OutlineInputBorder(),
@@ -101,6 +99,7 @@ class _TelaPrincipalState extends State<BuyTicket> {
               children: [
                 Expanded(
                   child: TextField(
+                    
                     decoration: InputDecoration(
                       labelText: 'Validade (MM/AA)',
                       border: OutlineInputBorder(),
