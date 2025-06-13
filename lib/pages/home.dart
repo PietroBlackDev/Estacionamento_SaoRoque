@@ -1,15 +1,15 @@
 import 'package:estacionamentoSaoRoque/componentes/header.dart';
+import 'package:estacionamentoSaoRoque/pages/cadastro.dart';
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   final List<Map<String, dynamic>> menuItems = [
     {'icon': Icons.confirmation_num, 'title': 'Créditos E-Tickets'},
     {'icon': Icons.point_of_sale, 'title': 'Pontos de Vendas'},
@@ -20,12 +20,19 @@ class _MyHomePageState extends State<MyHomePage> {
     {'icon': Icons.person, 'title': 'Meus Dados'},
   ];
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9F9),
-      body: SingleChildScrollView(
-        child: Column(
+      appBar: AppBar(
+        title: const Text(
+          'Menu',
+          style: TextStyle(color: Colors.white), // Cor branca
+        ),
+        backgroundColor: Color(
+          0xFF083765,
+        ), // Azul personalizado // Ícones do AppBar em branco (se houver)
+      ),
+      body: Column(
         children: [
           Header(texto: 'Home'),
           Padding(
@@ -40,7 +47,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ],
-        ),
       ),
     );
   }
@@ -63,7 +69,10 @@ class MenuCard extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: InkWell(
           onTap: () {
-            // Ação ao clicar
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (BuildContext context) => Cadastro()),
+            );
           },
           child: Center(
             child: Column(

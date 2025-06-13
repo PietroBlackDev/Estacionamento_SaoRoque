@@ -1,5 +1,5 @@
+import 'package:estacionamentoSaoRoque/pages/login.dart';
 import 'package:flutter/material.dart';
-import 'package:estacionamentoSaoRoque/pages/my_home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Estacionamento'),
+      home: const Login(),
     );
   }
 }
