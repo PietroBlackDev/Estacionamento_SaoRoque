@@ -29,6 +29,148 @@ class _TelaPrincipalState extends State<BuyTicket> {
 
   TextEditingController valorCreditoController = TextEditingController();
 
+  void _mostrarModalPagamento() {
+    if (formaPagamentoSelecionada == 'Pix') {
+      showDialog(
+        context: context,
+        builder:
+            (_) => AlertDialog(
+              title: const Text('Pagamento via Pix'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 200,
+                    height: 200,
+                    color: Colors.grey[300],
+                     child: const Center(child: Image(image: AssetImage('lib/assets/img/qrcode.jpeg'))),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text('Escaneie o código com seu app bancário.'),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Fechar', style: TextStyle(color: Colors.purple),),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _mostrarConfirmacao();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.purple,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 12,
+                    ),
+                  ),
+                  child: const Text('Concluir', style: TextStyle(fontSize: 18, color: Colors.white)),
+                ),
+              ],
+            ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder:
+            (_) => AlertDialog(
+              title: const Text('Dados do Cartão'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+            TextField(
+            
+              decoration: InputDecoration(
+                labelText: 'Nome do Titular',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 12),
+            TextField(
+    
+              decoration: InputDecoration(
+                labelText: 'Número do Cartão',
+                border: OutlineInputBorder(),
+              ),
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Validade (MM/AA)',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.datetime,
+                  ),
+                ),
+                SizedBox(width: 12),
+                Expanded(
+                  child: TextField(
+                
+                    decoration: InputDecoration(
+                      labelText: 'CVV',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
+                ),
+              ],
+            ),
+          ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Fechar', style: TextStyle(color: Colors.purple),),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _mostrarConfirmacao();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.purple,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 12,
+                    ),
+                  ),
+                  child: const Text('Concluir', style: TextStyle(fontSize: 18, color: Colors.white)),
+                ),
+              ],
+            ),
+      );
+    }
+  }
+
+  void _mostrarConfirmacao() {
+    showDialog(
+      context: context,
+      builder:
+          (_) => AlertDialog(
+            icon: const Icon(
+              Icons.check_circle,
+              color: Colors.green,
+              size: 50,
+            ),
+            title: const Text('Pagamento realizado!'),
+            content: const Text('Seu ticket foi adquirido com sucesso.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Fechar', style: TextStyle(color: Colors.purple)),
+              ),
+            ],
+          ),
+    );
+  }
+
+
   @override
   void dispose() {
     valorCreditoController.dispose();
@@ -271,7 +413,7 @@ class _TelaPrincipalState extends State<BuyTicket> {
                 width: double.infinity,
                 height: 60,
                 child: ElevatedButton(
-                  onPressed: _mostrarModalAtivacao,
+                  onPressed: _mostrarModalPagamento,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
@@ -364,7 +506,7 @@ class _TelaPrincipalState extends State<BuyTicket> {
                 width: double.infinity,
                 height: 60,
                 child: ElevatedButton(
-                  onPressed: _mostrarModalCredito,
+                  onPressed: _mostrarModalPagamento,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
@@ -386,70 +528,6 @@ class _TelaPrincipalState extends State<BuyTicket> {
     }
   }
 
-  void _mostrarModalAtivacao() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        contentPadding: EdgeInsets.all(24),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.check_circle, color: Colors.green, size: 80),
-            SizedBox(height: 16),
-            Text('Ticket ativado com sucesso!',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-            SizedBox(height: 8),
-            Text('Obrigado por usar nosso app.', textAlign: TextAlign.center),
-            SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).pop(),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-              ),
-              child: Text('OK'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _mostrarModalCredito() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        contentPadding: EdgeInsets.all(24),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.attach_money, color: Colors.green, size: 80),
-            SizedBox(height: 16),
-            Text('Crédito adicionado!',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-            SizedBox(height: 8),
-            Text('Seu saldo foi atualizado com sucesso.',
-                textAlign: TextAlign.center),
-            SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).pop(),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-              ),
-              child: Text('OK'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   void _mostrarModalAdicionarPlaca() {
   TextEditingController placaController = TextEditingController();
