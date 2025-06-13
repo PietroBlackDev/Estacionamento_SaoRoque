@@ -8,7 +8,6 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 10,
       children: [
         Container(
           width: MediaQuery.of(context).size.width * 1,
@@ -38,22 +37,32 @@ class Header extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 1,
           height: MediaQuery.of(context).size.height * 0.06,
           decoration: BoxDecoration(color: Color.fromRGBO(8, 55, 101, 1)),
-          alignment: Alignment.center,
-          padding: const EdgeInsets.only(left: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            spacing: 10,
-            children: [
-              Text(
-                texto,
-                style: TextStyle(
-                  color: Color.fromRGBO(244, 244, 244, 1),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              spacing: 10,
+              children: [
+                IconButton(
+                  padding: EdgeInsets.only(bottom: 0),
+                  iconSize: 45,
+                  icon: Icon(
+                    Icons.menu,
+                    color: Color.fromRGBO(244, 244, 244, 1),
+                  ),
+                  onPressed: () {},
                 ),
-              ),
-            ],
+                Text(
+                  texto,
+                  style: TextStyle(
+                    color: Color.fromRGBO(244, 244, 244, 1),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],

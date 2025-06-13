@@ -1,26 +1,88 @@
-
+import 'package:estacionamentoSaoRoque/componentes/header.dart';
 import 'package:flutter/material.dart';
 
-import '../componentes/header.dart';
-
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Map<String, dynamic>> menuItems = [
+    {'icon': Icons.confirmation_num, 'title': 'Créditos E-Tickets'},
+    {'icon': Icons.point_of_sale, 'title': 'Pontos de Vendas'},
+    {'icon': Icons.local_parking, 'title': 'Praça de Estacionamento'},
+    {'icon': Icons.history, 'title': 'Histórico de Tickets'},
+    {'icon': Icons.notifications, 'title': 'Multas e Notificações'},
+    {'icon': Icons.credit_card, 'title': 'Placas e Cartões'},
+    {'icon': Icons.person, 'title': 'Meus Dados'},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      backgroundColor: const Color(0xFFF9F9F9),
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[Header(texto: 'Placas e Cartões')],
+        children: [
+          Header(texto: 'Home'),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              children:
+                  menuItems.map((item) {
+                    return MenuCard(icon: item['icon'], title: item['title']);
+                  }).toList(),
+            ),
+          ),
+        ],
+        ),
+      ),
+    );
+  }
+}
+
+class MenuCard extends StatelessWidget {
+  final IconData icon;
+  final String title;
+
+  const MenuCard({super.key, required this.icon, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 150,
+      height: 150,
+      child: Card(
+        color: Colors.grey[200],
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: InkWell(
+          onTap: () {
+            // Ação ao clicar
+          },
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 35,
+                  backgroundColor: const Color(0xFF083765),
+                  child: Icon(icon, color: Colors.white, size: 35),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 15),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
