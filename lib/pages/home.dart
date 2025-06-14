@@ -1,98 +1,364 @@
 import 'package:estacionamentoSaoRoque/componentes/header.dart';
-import 'package:estacionamentoSaoRoque/pages/cadastro.dart';
+import 'package:estacionamentoSaoRoque/pages/PlacasECartoesUm.dart';
+import 'package:estacionamentoSaoRoque/pages/avisos_page.dart';
+import 'package:estacionamentoSaoRoque/pages/credito_tickets/buy_ticket.dart';
+import 'package:estacionamentoSaoRoque/pages/credito_tickets/historic_ticket.dart';
+import 'package:estacionamentoSaoRoque/pages/meuPerfil.dart';
+import 'package:estacionamentoSaoRoque/pages/pontos_estacionamento.dart';
+import 'package:estacionamentoSaoRoque/pages/pontos_venda.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final List<Map<String, dynamic>> menuItems = [
-    {'icon': Icons.confirmation_num, 'title': 'Créditos E-Tickets'},
-    {'icon': Icons.point_of_sale, 'title': 'Pontos de Vendas'},
-    {'icon': Icons.local_parking, 'title': 'Praça de Estacionamento'},
-    {'icon': Icons.history, 'title': 'Histórico de Tickets'},
-    {'icon': Icons.notifications, 'title': 'Multas e Notificações'},
-    {'icon': Icons.credit_card, 'title': 'Placas e Cartões'},
-    {'icon': Icons.person, 'title': 'Meus Dados'},
-  ];
-
+class _MyHomePageState extends State<MyHomePage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9F9F9),
-      appBar: AppBar(
-        title: const Text(
-          'Menu',
-          style: TextStyle(color: Colors.white), // Cor branca
-        ),
-        backgroundColor: Color(
-          0xFF083765,
-        ), // Azul personalizado // Ícones do AppBar em branco (se houver)
-      ),
       body: Column(
         children: [
           Header(texto: 'Home'),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Wrap(
-              spacing: 16,
-              runSpacing: 16,
-              children:
-                  menuItems.map((item) {
-                    return MenuCard(icon: item['icon'], title: item['title']);
-                  }).toList(),
+          SizedBox(height: 20),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF083765),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              padding: const EdgeInsets.all(0),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const BuyTicket(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 100,
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF083765),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.confirmation_num,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(height: 6),
+                                  Text(
+                                    'Créditos\nE-Tickets',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const PontosVenda(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 100,
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF083765),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.point_of_sale,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(height: 6),
+                                  Text(
+                                    'Pontos\nde Vendas',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (BuildContext context) =>
+                                          const PontosEstacionamento(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 100,
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF083765),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.local_parking,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(height: 6),
+                                  Text(
+                                    'Praça de\nEstacionamento',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const HistoricTicket(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 100,
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF083765),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.history,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(height: 6),
+                                  Text(
+                                    'Histórico\nde Tickets',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const AvisosPage(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 100,
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF083765),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.notifications,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(height: 6),
+                                  Text(
+                                    'Multas\ne Notificações',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (_) => const Placasecartoesum(title: ''),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 100,
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF083765),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.confirmation_num,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(height: 6),
+                                  Text(
+                                    'Placas\ne Cartões',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const Meuperfil(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 100,
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF083765),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.person_3,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(height: 6),
+                                  Text(
+                                    'Meus\nDados',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class MenuCard extends StatelessWidget {
-  final IconData icon;
-  final String title;
-
-  const MenuCard({super.key, required this.icon, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 150,
-      height: 150,
-      child: Card(
-        color: Colors.grey[200],
-        elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (BuildContext context) => Cadastro()),
-            );
-          },
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 35,
-                  backgroundColor: const Color(0xFF083765),
-                  child: Icon(icon, color: Colors.white, size: 35),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 15),
-                ),
-              ],
-            ),
-          ),
-        ),
       ),
     );
   }

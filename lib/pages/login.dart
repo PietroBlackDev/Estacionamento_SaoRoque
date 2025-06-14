@@ -1,7 +1,8 @@
 import 'package:estacionamentoSaoRoque/componentes/header.dart';
 import 'package:estacionamentoSaoRoque/pages/cadastro.dart';
 import 'package:estacionamentoSaoRoque/pages/esqueceusenha.dart';
-import 'package:estacionamentoSaoRoque/pages/my_home_page.dart';
+import 'package:estacionamentoSaoRoque/pages/home.dart';
+
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
