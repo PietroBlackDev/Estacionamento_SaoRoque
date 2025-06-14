@@ -1,3 +1,7 @@
+import 'package:estacionamentoSaoRoque/pages/PoliticasPrivacidade.dart';
+import 'package:estacionamentoSaoRoque/pages/home.dart';
+import 'package:estacionamentoSaoRoque/pages/login.dart';
+import 'package:estacionamentoSaoRoque/pages/perguntas_frequente.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
@@ -40,22 +44,42 @@ class Header extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.house),
                     title: const Text('Menu'),
-                    onTap: () => Navigator.of(context).pop(),
+                    onTap:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => const MyHomePage()),
+                        ),
                   ),
                   ListTile(
                     leading: const Icon(Icons.subdirectory_arrow_left),
                     title: const Text('Sair da Conta'),
-                    onTap: () => Navigator.of(context).pop(),
+                    onTap:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => const Login()),
+                        ),
                   ),
                   ListTile(
                     leading: const Icon(Icons.contact_support),
                     title: const Text('Dúvidas e informações'),
-                    onTap: () => Navigator.of(context).pop(),
+                    onTap:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const PerguntasFrequentesTela(),
+                          ),
+                        ),
                   ),
                   ListTile(
                     leading: const Icon(Icons.privacy_tip),
                     title: const Text('Política de privacidade'),
-                    onTap: () => Navigator.of(context).pop(),
+                    onTap:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const PoliticasPrivacidadeTela(),
+                          ),
+                        ),
                   ),
                 ],
               ),
